@@ -1,0 +1,108 @@
+
+<div class="card" style="width: 20rem;">
+  <div style="position: relative;">
+    <img class="card-img-top" src="{{user.picture.imagenUrl}}" height="350px" alt="Card image cap">
+    <button style="position:absolute;bottom:0;right:0;" class="btn btn-info btn-icon btn-round"
+            data-toggle="modal" data-target="#exampleModal">
+      <i class="fa fa-edit"></i>
+    </button>
+  </div>
+  <div class="modal fade" id="exampleModal" tabindex="-1" role="dialog" aria-labelledby="exampleModalLabel" aria-hidden="true">
+    <div class="modal-dialog" role="document">
+      <div class="modal-content">
+        <div class="modal-header">
+          <h5 class="modal-title" id="exampleModalLabel">Profile picture</h5>
+          <button type="button" class="btn btn-round btn-info" data-dismiss="modal" aria-label="Close">
+            <span aria-hidden="true">&times;</span>
+          </button>
+        </div>
+        <div class="modal-body">
+          Add an image
+          <div class="mb-3">
+            <label for="formFile" class="form-label"></label>
+            <input class="form-control" type="file" id="formFile" (change)="onFileSelected($event)">
+          </div>
+          <div class="alert alert-info" role="alert" [hidden]="created">
+            {{message}}
+          </div>
+        </div>
+        <div class="modal-footer">
+          <button type="button" class="btn btn-secondary" data-dismiss="modal">Close</button>
+          <button type="button" class="btn btn-info" (click)="onUpload()"
+                  >Save changes</button>
+        </div>
+      </div>
+    </div>
+  </div>
+
+
+  <div class="card-body">
+    <h4 class="card-title">{{user.firstName}} {{user.lastName}}</h4>
+    <div class="card-text">
+      <h6>email: </h6> {{user.email}}
+      <h6>password: </h6> ***********
+      <h6>telephone: </h6> {{user.phoneNumber}} &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
+      &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
+
+      <span [hidden]="user.phoneNumberVerif" class="badge badge-warning">Not verified</span>
+      <span [hidden]="!user.phoneNumberVerif" class="badge badge-success">verified</span>
+
+    </div>
+    <a href="#" class="btn btn-info btn-round" data-toggle="modal" data-target="#myModal">edit</a>
+  </div>
+</div>
+<div class="modal fade" id="myModal" tabindex="-1" role="dialog" aria-labelledby="myModalLabel" style="display: none;" aria-hidden="true">
+  <div class="modal-dialog">
+    <div class="modal-content">
+      <div class="modal-header justify-content-center">
+        <button type="button" class="close" data-dismiss="modal" aria-hidden="true">
+          <i class="now-ui-icons ui-1_simple-remove"></i>
+        </button>
+        <h4 class="title title-up">update your information</h4>
+      </div>
+      <div class="modal-body">
+        <form class="form" style="padding: 3%">
+          <div class="card-header text-center">
+
+          </div>
+          <div class="form-group row">
+            <div class="col">
+              <label for="firstName" >Firstname</label>
+              <input type="text" class="form-control" ngModel name="firstName" id="firstName" placeholder="fedi">
+            </div>
+            <div class="col">
+              <label for="lastName">Lastname</label>
+              <input type="text" class="form-control" ngModel name="lastName" id="lastName" placeholder="labidi">
+            </div>
+          </div>
+          <div class="form-group">
+            <label for="email">Email address</label>
+            <input type="email" class="form-control" ngModel name="email" id="email" aria-describedby="emailHelp" value="Enter email">
+            <small id="emailHelp" class="form-text text-muted">We'll never share your email with anyone else.</small>
+          </div>
+
+          <div class="form-group row">
+            <div class="col">
+              <label for="exampleInputPassword1">Password</label>
+              <input type="password" class="form-control" ngModel name="password" id="password" placeholder="password">
+            </div>
+            <div class="col">
+              <label for="exampleInputPassword1">Confirm password</label>
+              <input type="password" class="form-control" id="exampleInputPassword1" placeholder="confirm password">
+            </div>
+          </div>
+          <div class="form-group">
+            <label for="exampleInputPassword1">Phone</label>
+            <input type="text" class="form-control" ngModel value="{{user.phoneNumber}}" name="phoneNumber" id="phoneNumber" placeholder="+216 71 000 000">
+          </div>
+
+
+        </form>
+      </div>
+      <div class="modal-footer">
+        <button type="button" class="btn btn-default">Nice Button</button>
+        <button type="button" class="btn btn-info" data-dismiss="modal">Close</button>
+      </div>
+    </div>
+  </div>
+</div>
